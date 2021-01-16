@@ -1,0 +1,10 @@
+sudo: required
+services:
+  - docker
+# le -t name qu'on va donner à notre image
+# n'est pas très important car il est uniquement use dans le travis
+before_install:
+  - docker build -t stevorc/frontend-ci-cd -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true USERNAME/docker-react npm run test
