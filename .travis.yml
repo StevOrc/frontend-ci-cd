@@ -8,3 +8,13 @@ before_install:
 
 script:
   - docker run -e CI=true stevorc/frontend-ci-cd npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "frontend-ci-cd"
+  env: "FrontendCiCd-env"
+  bucket_name: "elasticbeanstalk-us-east-2-302542496794"
+  bucket_path: "frontend-ci-cd"
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
